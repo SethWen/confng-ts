@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",
+    "newLine": "lf",
+    "module": "ESNext",
+    "lib": ["ESNext", "ESNext.Disposable", "DOM"],
+    "target": "ESNext",
+    "allowJs": true,
+    "checkJs": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "bundler",
+    "pretty": true,
+    "declaration": false,
+    "removeComments": true,
+    "resolveJsonModule": true,
+    "noImplicitReturns": true,
+    "listFiles": false,
+    "esModuleInterop": true
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "./src/**/*.spec.ts", "package.json"],
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "addExtensions": true
+  }
+}

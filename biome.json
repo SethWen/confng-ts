@@ -1,0 +1,84 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "files": {
+    "ignore": ["dist", "coverage", "appver.json"],
+    "ignoreUnknown": true
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "style": {
+        "noUnusedTemplateLiteral": "off",
+        "noUselessElse": "off",
+        "noParameterAssign": "off",
+        "useTemplate": "off",
+        "noCommaOperator": "off",
+        "useSelfClosingElements": "warn",
+        "noNonNullAssertion": "off"
+      },
+      "complexity": {
+        "useLiteralKeys": "off",
+        "useArrowFunction": "off",
+        "noForEach": "off",
+        "noUselessConstructor": "off",
+        "useOptionalChain": "warn"
+      },
+      "correctness": {
+        "noConstantCondition": "off",
+        "noUnnecessaryContinue": "off",
+        "noUnusedImports": "warn",
+        "useExhaustiveDependencies": "off"
+      },
+      "suspicious": {
+        "noAsyncPromiseExecutor": "off",
+        "noExplicitAny": "off",
+        "noArrayIndexKey": "off",
+        "useAwait": "warn"
+      },
+      "security": {
+        "noGlobalEval": "off",
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off",
+        "useKeyWithClickEvents": "off",
+        "useKeyWithMouseEvents": "off",
+        "useFocusableInteractive": "off"
+      },
+      "performance": {
+        "noDelete": "off"
+      }
+    }
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "javascript": {
+    "formatter": {
+      "arrowParentheses": "always",
+      "bracketSameLine": false,
+      "bracketSpacing": true,
+      "jsxQuoteStyle": "single",
+      "lineWidth": 100,
+      "lineEnding": "lf",
+      "semicolons": "always",
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "indentWidth": 2,
+      "trailingCommas": "es5"
+    }
+  },
+  "json": {
+    "formatter": {
+      "indentWidth": 2
+    },
+    "parser": {
+      "allowTrailingCommas": true
+    }
+  }
+}
