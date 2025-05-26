@@ -81,7 +81,7 @@ export class Conf {
     const keys = key.split('.');
     let val = this.#conf;
     for (const k of keys) {
-      val = val[k];
+      val = val?.[k];
     }
 
     // Return a copy to prevent modification

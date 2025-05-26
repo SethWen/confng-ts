@@ -1,6 +1,7 @@
 # confng
 
 A simple configuration management tool for Node.js, confng means config for next-generation.
+You can use it to manage your Node.js application's configuration in a simple and flexible way.
 
 ### Install
 
@@ -35,10 +36,14 @@ console.log(conf.get('name')); // foo
 console.log(conf.get('server.port')); // 3000
 console.log(conf.get('server.host')); // localhost
 
+
+// The inner of Conf will guess the type of the value automatically from the initial config object.
+// So the inital config object should be in full form, and the value of each key should be in the correct type.
+
 // if the following environment variables setted 
 // FOO__SERVER__PORT=4000 
 // FOO__SERVER__HOST=example.com
-console.log(conf.get('server.port')); // 4000
+console.log(conf.get('server.port')); // here will return 4000 and the data type is number.
 console.log(conf.get('server.host')); // example.com
 ```
 
