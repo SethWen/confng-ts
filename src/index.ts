@@ -84,7 +84,7 @@ export class Conf {
       val = val[k];
     }
 
-    // 这里返回副本，防止修改
+    // Return a copy to prevent modification
     if (typeof val === 'object') {
       if (Array.isArray(val)) {
         return [...val] as unknown as T;
