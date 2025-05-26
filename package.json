@@ -12,7 +12,8 @@
     "test": "vitest --run src",
     "build": "tsup",
     "clean": "rm -rf dist",
-    "prepack": "tsup"
+    "prepack": "tsup",
+    "prepublish": "tsup"
   },
   "exports": {
     ".": {
