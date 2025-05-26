@@ -1,5 +1,5 @@
 {
-  "name": "confng",
+  "name": "conf-ts",
   "version": "1.0.0",
   "description": "Next generation configuration management tool for Node.js",
   "main": "dist/index.cjs",
