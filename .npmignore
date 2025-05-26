@@ -1,0 +1,9 @@
+# Ignore all files and directories
+*
+
+# Include only the dist directory, README.md, and LICENSE
+!dist/
+!dist/**
+!README*.md
+!LICENSE
+!package.json
