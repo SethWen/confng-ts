@@ -1,10 +1,11 @@
-name: Check CI For conf-ts
+name: Check runner
 
 on:
   push:
     branches: [ $default-branch ]
   pull_request:
     branches: [ $default-branch ]
+  workflow_dispatch:  
 
 jobs:
   build:
