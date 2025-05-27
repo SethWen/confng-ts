@@ -1,5 +1,5 @@
 {
-  "name": "conf-ts",
+  "name": "confng-ts",
   "version": "1.0.0",
   "description": "Next generation configuration management tool for Node.js",
   "main": "dist/index.cjs",
@@ -22,16 +22,22 @@
     }
   },
   "files": ["dist", "README*.md", "LICENSE", "package.json"],
-  "keywords": ["simple", "configuration", "node.js"],
+  "keywords": [
+    "simple",
+    "configuration",
+    "merge environment",
+    "node.js",
+    "typescript"
+  ],
   "author": "Shawn Wen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SethWen/conf-ts"
+    "url": "git+https://github.com/SethWen/confng-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/SethWen/conf-ts/issues"
+    "url": "https://github.com/SethWen/confng-ts/issues"
   },
-  "homepage": "https://github.com/SethWen/conf-ts#readme",
+  "homepage": "https://github.com/SethWen/confng-ts#readme",
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

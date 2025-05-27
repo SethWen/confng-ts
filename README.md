@@ -1,18 +1,18 @@
-# confng
+# confng-ts
 
-A simple configuration management tool for Node.js, confng means config for next-generation.
+A simple configuration management tool for Node.js.
 You can use it to manage your Node.js application's configuration in a simple and flexible way.
 
 ### Install
 
 ```
-npm install confng
+npm install confng-ts
 ```
 
 ### Usage
 
 ```typescript
-import { Conf } from 'conf-ts';
+import { Conf } from 'confng-ts';
 
 // create a new Conf instance with a config object and mergeEnvOptions
 // If you don't want to merge environment variables, you can omit the mergeEnvOptions option.
@@ -51,7 +51,7 @@ console.log(conf.get('server.host')); // example.com
 
 ```typescript
 import { readFile } from 'node:fs/promises';
-import { Conf } from 'conf-ts';
+import { Conf } from 'confng-ts';
 
 const configPath = `config/${process.env.NODE_ENV || 'default'}.json`;
 const conf = new Conf({
