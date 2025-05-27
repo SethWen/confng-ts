@@ -1,6 +1,8 @@
 import assert from 'node:assert';
 import snakify from 'snakify-ts';
 
+console.log(snakify('DPrintData'));
+
 const parsers = {
   integer: (v: string, k: string) => {
     const num = Number.parseInt(v);
@@ -21,30 +23,53 @@ export interface MergeEnvOptions {
   separator?: string;
 }
 
-export interface XConfOptions {
+export interface ConfOptions {
   config: Record<string, any>;
   mergeEnvOptions?: MergeEnvOptions;
 }
 
 function mergeEnv(obj: Record<string, any>, { prefix = '', separator = '__' }: MergeEnvOptions) {
+  if (obj === null) return;
+
   for (const key in obj) {
     const value = obj[key];
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       // 如果是对象，递归处理
       mergeEnv(value, {
-        prefix: `${prefix ? `${prefix.toUpperCase()}__` : ''}${key}`,
+        prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${key}`,
         separator,
       });
     } else if (Array.isArray(value)) {
       // 如果是数组，遍历每个元素并递归处理
       value.forEach((item, index) => {
-        mergeEnv(item, {
-          prefix: `${prefix ? `${prefix.toUpperCase()}__` : ''}${key}__${index}`,
-          separator,
-        });
+        if (typeof item === 'object') {
+          mergeEnv(item, {
+            prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${key}${separator}${index}`,
+            separator,
+          });
+        } else {
+          const envKey = `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${snakify(key).toUpperCase()}${separator}${index}`;
+          if (process.env[envKey] !== undefined) {
+            let basicType: string = typeof item;
+            if (basicType === 'number') {
+              if (Number.isInteger(item)) {
+                basicType = 'integer';
+              } else {
+                basicType = 'float';
+              }
+            }
+
+            const parse = parsers[basicType];
+            if (parse) {
+              value[index] = parse(process.env[envKey], envKey);
+            } else {
+              value[index] = process.env[envKey];
+            }
+          }
+        }
       });
     } else {
-      const envKey = `${prefix ? `${prefix.toUpperCase()}__` : ''}${snakify(key).toUpperCase()}`;
+      const envKey = `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${snakify(key).toUpperCase()}`;
       if (process.env[envKey] !== undefined) {
         let basicType: string = typeof value;
         if (basicType === 'number') {
@@ -69,7 +94,7 @@ function mergeEnv(obj: Record<string, any>, { prefix = '', separator = '__' }: M
 export class Conf {
   readonly #conf: Record<string, any>;
 
-  constructor({ config, mergeEnvOptions }: XConfOptions) {
+  constructor({ config, mergeEnvOptions }: ConfOptions) {
     const conf = { ...config };
     if (mergeEnvOptions) {
       mergeEnv(conf, mergeEnvOptions);
