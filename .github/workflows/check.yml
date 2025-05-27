@@ -37,10 +37,10 @@ jobs:
       run: pnpm install
 
     - name: Check linting and formatting
-      run: pnpm run check --if-present
+      run: pnpm run --if-present check
 
     - name: Test with Vitest
-      run: pnpm run test --if-present
+      run: pnpm run --if-present test
 
     - name: Build with Tsup
-      run: pnpm run build --if-present
+      run: pnpm run --if-present build
