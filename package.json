@@ -1,5 +1,5 @@
 {
-  "name": "confng",
+  "name": "conf-ts",
   "version": "1.0.0",
   "description": "Next generation configuration management tool for Node.js",
   "main": "dist/index.cjs",
@@ -12,7 +12,8 @@
     "test": "vitest --run src",
     "build": "tsup",
     "clean": "rm -rf dist",
-    "prepack": "tsup"
+    "prepack": "tsup",
+    "prepublish": "tsup"
   },
   "exports": {
     ".": {
@@ -25,12 +26,12 @@
   "author": "Shawn Wen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SethWen/confng"
+    "url": "https://github.com/SethWen/conf-ts"
   },
   "bugs": {
-    "url": "https://github.com/SethWen/confng/issues"
+    "url": "https://github.com/SethWen/conf-ts/issues"
   },
-  "homepage": "https://github.com/SethWen/confng#readme",
+  "homepage": "https://github.com/SethWen/conf-ts#readme",
   "license": "MIT",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
