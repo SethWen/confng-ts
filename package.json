@@ -22,11 +22,17 @@
     }
   },
   "files": ["dist", "README*.md", "LICENSE", "package.json"],
-  "keywords": ["simple", "configuration", "node.js"],
+  "keywords": [
+    "simple",
+    "configuration",
+    "merge environment",
+    "node.js",
+    "typescript"
+  ],
   "author": "Shawn Wen",
   "repository": {
     "type": "git",
-    "url": "https://github.com/SethWen/conf-ts"
+    "url": "git+https://github.com/SethWen/conf-ts.git"
   },
   "bugs": {
     "url": "https://github.com/SethWen/conf-ts/issues"
