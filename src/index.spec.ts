@@ -128,4 +128,31 @@ describe('Conf', () => {
     expect(conf.get('notexist')).toBeUndefined();
     expect(conf.get('not.exist')).toBeUndefined();
   });
+
+  it('should return true if key exists or false if not', () => {
+    const conf = new Conf({
+      config: {
+        name: 'original',
+        server: {
+          port: 8080,
+          basePath: '/api',
+        },
+        logs: [
+          {
+            level: 'info',
+            output: 'console',
+          },
+        ],
+      },
+    });
+
+    expect(conf.has('name')).toBe(true);
+    expect(conf.has('server.port')).toBe(true);
+    expect(conf.has('server.basePath')).toBe(true);
+    expect(conf.has('server')).toBe(true);
+    expect(conf.has('logs.0.level')).toBe(true);
+    expect(conf.has('logs.0')).toBe(true);
+    expect(conf.has('notexist')).toBe(false);
+    expect(conf.has('not.exist')).toBe(false);
+  });
 });

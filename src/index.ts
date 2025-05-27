@@ -32,13 +32,13 @@ function mergeEnv(obj: Record<string, any>, { prefix = '', separator = '__' }: M
   for (const key in obj) {
     const value = obj[key];
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-      // 如果是对象，递归处理
+      // if value is an object, recursively merge
       mergeEnv(value, {
         prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${key}`,
         separator,
       });
     } else if (Array.isArray(value)) {
-      // 如果是数组，遍历每个元素并递归处理
+      // if value is an array, recursively merge each item
       value.forEach((item, index) => {
         if (typeof item === 'object') {
           mergeEnv(item, {
@@ -117,6 +117,16 @@ export class Conf {
     } else {
       return val;
     }
+  }
+
+  has(key: string): boolean {
+    const keys = key.split('.');
+    let val = this.#conf;
+    for (const k of keys) {
+      if (val === undefined) return false;
+      val = val?.[k];
+    }
+    return val !== undefined;
   }
 
   display() {
