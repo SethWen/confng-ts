@@ -28,8 +28,13 @@ jobs:
         registry-url: https://registry.npmjs.org/
         cache: 'pnpm'
 
-    - run: pnpm install
-    - run: pnpm run --if-present build
-    - run: pnpm publish
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Build package
+      run: pnpm run --if-present build
+
+    - name: Publish package to npmjs
+      run: npm publish
       env:
-        NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPMJS_ACCESS_TOKEN }}
