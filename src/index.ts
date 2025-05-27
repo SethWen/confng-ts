@@ -1,8 +1,6 @@
 import assert from 'node:assert';
 import snakify from 'snakify-ts';
 
-console.log(snakify('DPrintData'));
-
 const parsers = {
   integer: (v: string, k: string) => {
     const num = Number.parseInt(v);

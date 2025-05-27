@@ -1,12 +1,12 @@
-# confng
+# conf-ts
 
-A simple configuration management tool for Node.js, confng means config for next-generation.
+A simple configuration management tool for Node.js.
 You can use it to manage your Node.js application's configuration in a simple and flexible way.
 
 ### Install
 
 ```
-npm install confng
+npm install conf-ts
 ```
 
 ### Usage
