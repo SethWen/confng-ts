@@ -34,7 +34,7 @@ function mergeEnv(obj: Record<string, any>, { prefix = '', separator = '__' }: M
     if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
       // if value is an object, recursively merge
       mergeEnv(value, {
-        prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${key}`,
+        prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${snakify(key).toUpperCase()}`,
         separator,
       });
     } else if (Array.isArray(value)) {
@@ -42,7 +42,7 @@ function mergeEnv(obj: Record<string, any>, { prefix = '', separator = '__' }: M
       value.forEach((item, index) => {
         if (typeof item === 'object') {
           mergeEnv(item, {
-            prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${key}${separator}${index}`,
+            prefix: `${prefix ? `${prefix.toUpperCase()}${separator}` : ''}${snakify(key).toUpperCase()}${separator}${index}`,
             separator,
           });
         } else {
