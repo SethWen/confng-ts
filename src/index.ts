@@ -129,6 +129,10 @@ export class Conf {
     return val !== undefined;
   }
 
+  toString() {
+    return JSON.stringify(this.#conf);
+  }
+
   display() {
     console.log(JSON.stringify(this.#conf, null, 2));
   }
