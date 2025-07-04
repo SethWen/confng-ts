@@ -25,6 +25,7 @@ const conf = new Conf({
             "port": 3000,
             "host": "localhost"
         },
+        "redisUri": "redis://localhost:6379"
     },
     mergeEnvOptions: {
         prefix: 'FOO',
@@ -35,7 +36,7 @@ const conf = new Conf({
 console.log(conf.get('name')); // foo
 console.log(conf.get('server.port')); // 3000
 console.log(conf.get('server.host')); // localhost
-
+console.log(conf.get('redisUri')); // redis://localhost:6379
 
 // The inner of Conf will guess the type of the value automatically from the initial config object.
 // So the inital config object should be in full form, and the value of each key should be in the correct type.
@@ -43,8 +44,10 @@ console.log(conf.get('server.host')); // localhost
 // if the following environment variables setted 
 // FOO__SERVER__PORT=4000 
 // FOO__SERVER__HOST=example.com
+// FOO__REDIS_URI=redis://example.com:6379
 console.log(conf.get('server.port')); // here will return 4000 and the data type is number.
 console.log(conf.get('server.host')); // example.com
+console.log(conf.get('redisUri')); // redis://example.com:6379
 ```
 
 ### Migrate from [config](https://www.npmjs.com/package/config)
@@ -53,9 +56,10 @@ console.log(conf.get('server.host')); // example.com
 import { readFile } from 'node:fs/promises';
 import { Conf } from 'confng-ts';
 
+// If using `config` before, the config file should locate in the `config` directory, and the file name should be `default.json` or `development.json` or `production.json` or `test.json` or other names.
 const configPath = `config/${process.env.NODE_ENV || 'default'}.json`;
 const conf = new Conf({
-    config: await readFile('config.json', 'utf8'),
+    config: await readFile(configPath, 'utf8'),
     mergeEnvOptions: {
         prefix: 'FOO',
         separator: '__',

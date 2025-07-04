@@ -15,6 +15,8 @@ describe('Conf', () => {
     vi.stubEnv('MOCK__SERVER__BASE_PATH', '/mockpath');
     vi.stubEnv('MOCK__LOGS__0__LEVEL', 'custom');
     vi.stubEnv('MOCK__NUMS__0', '8');
+    vi.stubEnv('MOCK__FOO_APP__BAR_NAME', 'customBarValue');
+    vi.stubEnv('MOCK__FOO_APP__BAZ_NAME', 'customBazValue');
 
     const conf = new Conf({
       config: {
@@ -22,6 +24,10 @@ describe('Conf', () => {
         server: {
           port: 8080,
           basePath: '/api',
+        },
+        fooApp: {
+          barName: 'barValue',
+          'baz-name': 'bazValue',
         },
         logs: [
           {
@@ -41,6 +47,8 @@ describe('Conf', () => {
     expect(conf.get('server.port')).toBe(6666);
     expect(conf.get('server.basePath')).toBe('/mockpath');
     expect(conf.get('server')).toEqual({ port: 6666, basePath: '/mockpath' });
+    expect(conf.get('fooApp.barName')).toBe('customBarValue');
+    expect(conf.get('fooApp.baz-name')).toBe('customBazValue');
     expect(conf.get('logs.0.level')).toBe('custom');
     expect(conf.get('logs.0')).toEqual({ level: 'custom', output: 'console' });
     expect(conf.get('nums.0')).toBe(8);
